@@ -1,0 +1,30 @@
+.reveal .slides {
+    display: inline-block;
+    font-size: 0.8em;
+    line-height: 1.2em;
+    text-align: center;
+  }
+
+.reveal section img { 
+    background: none; 
+    border: none; 
+    box-shadow: none;
+    vertical-align: central;
+}
+
+.reveal .title {
+    vertical-align: central;
+    padding-top: 250px;
+    font-size: 1.7em;
+}
+
+.reveal .author {
+    font-size: 1.2em;
+    padding-top: 80px;
+}
+
+.reveal .date {
+    font-size: 0.8em;
+    text-align: left;
+    padding-top:200px;
+}

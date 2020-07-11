@@ -1,0 +1,95 @@
+---
+title: "AmpGram - prediction of antimicrobial peptides"
+author: "Katarzyna Sidorczuk"
+date: "15.07.2020"
+output: 
+  revealjs::revealjs_presentation:
+    transition: none
+    theme: serif
+    css: style.css
+    embedded: false
+    reveal_options:
+      controls: false
+      progress: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Amino acids and peptides
+
+- Peptides consist of 20 amino acids 
+- Amino acids are encoded by letters
+
+<img src="figures/peptide.png" width="450" style="padding-top:100px">
+
+
+## What are antimicrobial peptides?
+
+- Short peptides, usually consisting of 5-100 amino acids
+- Host defense peptides widespread in all living organisms
+- Rich in positively charged and hydrophobic residues
+- Able to interact with negatively charged bacterial membranes
+- May display antibacterial, antiviral, antifungal, antiparasitic, anticancer properties
+
+
+## Existing software and length-score dependency
+
+
+<img src="figures/Fig1.png" width="900" style="padding-top:100px">
+
+
+## Prediction of antimicrobial peptides with AmpGram
+
+<img src="figures/models.png" width="300">
+
+## Positive dataset - AMPs
+
+- 12,389 AMPs from dbAMP database
+- removal of sequences containing nonstandard amino acids (B, J, O, U, X, Z)
+- homology reduction with CD-HIT (0.9 identity cut-off)
+- final dataset: 2463 peptides
+
+
+## Negative dataset construction
+
+544,249 sequences from UniProt (experimentally validated, without antimicrobial, antibacterial, antiviral, antifungal activity, and not possesing mitochondrial or plastid transit peptide)
+
+<img src="figures/negative_dataset.png" width="450">
+ 
+ 
+## Train-test and benchmark datasets
+ 
+- Both positive and negative dataset were divided into five equally sized groups of sequence lengths: 11–19, (ii) 20–26, (iii) 27–36, (iv) 37–60 and (v) 61–710. 
+- One tenth of sequences from each group were extracetd to create the benchmark dataset (247 AMP and 247 non-AMPs).
+- Remaining 2216 sequences in each dataset were used for training and testing.
+
+
+## Extraction of n-grams
+
+- All 10-mers from the positive dataset were considered as AMPs, whereas all 10-mers from the negative dataset as non-AMPs.
+- 87,716 AMP 10-mers and 87,599 non-AMP 10-mers
+- Extraction of n-grams: unigrams, bigrams (with a gap length from 1 to 3) and trigrams (single gap between the first and the second or the second and the third position)
+- the counts of n-grams were binarized, where 1 means that an n-gram was present in the sequence and 0 if it was absent
+
+<img src="figures/ngrams.png" width="400" style="padding-top:100px">
+
+## Random forest model training - prediction for 10-mers
+
+
+## Random forest model training - prediction for whole peptides
+
+
+## Benchmark on our dataset
+
+
+## Benchmark on Gabere and Noble's datasets
+
+
+## Prediction of experimentally validated antimicrobial regions in lactoferrin
+
+<img src="figures/lactoferrin_mers.png" width="900" style="padding-top:100px">
+ 
+ 
