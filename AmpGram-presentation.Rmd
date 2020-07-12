@@ -13,7 +13,6 @@ output:
       progress: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -37,25 +36,34 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Existing software and length-score dependency
 
+- There are many AMP prediction algorithms, some accessible as web servers.
+- Many classifiers exhibit stong length dependence.
 
-<img src="figures/Fig1.png" width="900" style="padding-top:100px">
+
+## Existing software and length-score dependency
+
+- There are many AMP prediction algorithms, some accessible as web servers.
+- Many classifiers exhibit stong length dependence.
+
+<img src="figures/Fig1.png" width="900" style="padding-top:35px">
 
 
 ## Prediction of antimicrobial peptides with AmpGram
 
 <img src="figures/models.png" width="300">
 
-## Positive dataset - AMPs
 
-- 12,389 AMPs from dbAMP database
-- removal of sequences containing nonstandard amino acids (B, J, O, U, X, Z)
-- homology reduction with CD-HIT (0.9 identity cut-off)
-- final dataset: 2463 peptides
+## Positive dataset construction
+
+- 12,389 AMP sequences were downloaded from dbAMP database.
+- Sequences containing nonstandard amino acids (B, J, O, U, X, Z) were removed.
+- Homology reduction was performed with CD-HIT (0.9 identity cut-off).
+- Final dataset consisted of 2463 peptides.
 
 
 ## Negative dataset construction
 
-544,249 sequences from UniProt (experimentally validated, without antimicrobial, antibacterial, antiviral, antifungal activity, and not possesing mitochondrial or plastid transit peptide)
+544,249 sequences from UniProt (experimentally validated, without antimicrobial, antibacterial, antiviral, antifungal activity, and not possesing mitochondrial or plastid transit peptide).
 
 <img src="figures/negative_dataset.png" width="450">
  
@@ -72,23 +80,54 @@ knitr::opts_chunk$set(echo = TRUE)
 - All 10-mers from the positive dataset were considered as AMPs, whereas all 10-mers from the negative dataset as non-AMPs.
 - 87,716 AMP 10-mers and 87,599 non-AMP 10-mers
 - Extraction of n-grams: unigrams, bigrams (with a gap length from 1 to 3) and trigrams (single gap between the first and the second or the second and the third position)
-- the counts of n-grams were binarized, where 1 means that an n-gram was present in the sequence and 0 if it was absent
+- Binarization of n-gram counts
 
 <img src="figures/ngrams.png" width="400" style="padding-top:100px">
 
-## Random forest model training - prediction for 10-mers
+
+## Model training: prediction for 10-mers
+
+- 5-fold cross-validation was performed using different length groups.
+- Peptides of lengths 11-26 yielded the best results (893 AMPs and non-AMPs, 8791 AMP and 8818 non-AMP 10-mers).
+- Training data: 13,087 most informative n-grams selected by QuiPT.
+- Random forest was grown with 2000 trees and default mtry parameter using ranger R package.
+
+<img src="figures/first_model.png" width="340">
+
+## Model training: prediction for whole peptides
+
+- 14 statistics were used to describe 10-mer predictions for each peptide
+- Second random forest model was trained on these statistics (500 trees, default mtry)
+
+<img src="figures/stats.png" width="340">
 
 
-## Random forest model training - prediction for whole peptides
+## Model training: prediction for whole peptides
+
+
+<img src="figures/models.png" width="300">
+
 
 
 ## Benchmark on our dataset
 
+Dataset consisted of 247 AMPs and 247 non-AMPs
+
+<img src="figures/Fig2.png" width="900">
+
 
 ## Benchmark on Gabere and Noble's datasets
 
+DAMPD dataset was modified by removing sequences used to train AmpGram or AMPScanner.
+
+<img src="figures/Fig3.png" width="900">
+
 
 ## Prediction of experimentally validated antimicrobial regions in lactoferrin
+
+- 11 amino acid N-terminal fragment
+- Lactoferricin: 17-41
+- Lactoferrampin: 268–284
 
 <img src="figures/lactoferrin_mers.png" width="900" style="padding-top:100px">
  
