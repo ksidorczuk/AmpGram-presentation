@@ -13,9 +13,13 @@
 }
 
 .reveal .title {
+    background-image: url("figures/AMP_log.png");
+    background-position:center;
+	  background-size: 60%;
+	  background-repeat: no-repeat;
     vertical-align: central;
     font-family: sans-serif;
-    padding-top: 250px;
+    padding-top: 300px;
     font-size: 1.6em;
 }
 
@@ -37,4 +41,16 @@
     font-size: 0.8em;
     text-align: left;
     padding-top:150px;
+}
+
+.reveal section figcaption {
+    font-size: 0.35em;
+}
+
+.reveal .slide-number {
+    font-size: 10pt;
+    color: white;
+    position: absolute;
+    right: 0;
+    bottom: 0; 
 }
