@@ -1,5 +1,5 @@
 ---
-title: " "
+title: "prediction of antimicrobial peptides"
 author: "Katarzyna Sidorczuk"
 date: "15/10/2020"
 output: 
