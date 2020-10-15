@@ -172,8 +172,8 @@ count_ampgrams <- function(mer_df, ns, ds) {
     binarize
 }
 
-as.matrix(binary_ngrams)[1:5, 1:5]
-ncol(as.matrix(binary_ngrams))
+as.matrix(binary_ngrams[1:10, 15:25])
+ncol(binary_ngrams)
 ```
 
 
