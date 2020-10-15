@@ -147,18 +147,25 @@ get_mers <- function(pos, pos_id, neg, neg_id) {
     print(paste0("Number of non-AMP mers: ", nrow(filter(target == FALSE))))
     }
 }  
+```
 
+## Extraction of 10-mers
+
+- All 10-mers from the positive dataset were considered as AMPs, whereas all 10-mers from the negative dataset as non-AMPs.
+- 87,716 AMP 10-mers and 87,599 non-AMP 10-mers
+```{r}
 head(mer_df)
 ```
 
 
 ## Extraction of n-grams
 
-
 - Extraction of n-grams: unigrams, bigrams (gap length from 1 to 3) and trigrams (single gaps)
 - Binarization of n-gram counts
 
-<img src="figures/ngrams.png" width="250">
+<img src="figures/ngrams.png" width="400" style="padding-top:50px">
+
+## Extraction of n-grams
 
 ```{r}
 count_ampgrams <- function(mer_df, ns, ds) {
@@ -198,6 +205,10 @@ head(AmpGram_model[["imp_features"]], 50)
 - Training data: 13,087 most informative n-grams selected by QuiPT.
 - Random forest was grown with 2000 trees and default mtry parameter using ranger R package.
 
+<img src="figures/first_model.png" width="340">
+
+## Model training: prediction for 10-mers
+
 ```{r}
 train_model_mers <- function(train_mer_df, train_groups, train_binary_ngrams, imp_bigrams) {
   train_dat <- filter(train_mer_df, group %in% train_groups)
@@ -213,9 +224,6 @@ train_model_mers <- function(train_mer_df, train_groups, train_binary_ngrams, im
 AmpGram_model[["rf_mers"]]
 ```
 
-## Model training: prediction for 10-mers
-
-<img src="figures/first_model.png" width="340">
 
 ## Calculation of statistics for peptides
 
@@ -254,6 +262,8 @@ calculate_statistics <- function(pred_mers) {
 
 <img src="figures/stats.png" width="340">
 
+## Model training: prediction for whole peptides
+
 ```{r}
 train_model_peptides <- function(mer_statistics) {
   train_dat <- mer_statistics %>% 
@@ -271,11 +281,8 @@ AmpGram_model[["rf_peptides"]]
 ```
 
 
-## Model training: prediction for whole peptides
 
-<img src="figures/stats.png" width="340">
-
-## Final algorith structure
+## Final algorithm structure
 
 
 <img src="figures/models.png" width="300">
