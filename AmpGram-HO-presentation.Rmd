@@ -323,7 +323,7 @@ Dataset consisted of 247 AMPs and 247 non-AMPs
 
 ## Usage - prediction
 
-```{r message = FALSE}
+```{r warning = FALSE}
 library(AmpGram)
 library(AmpGramModel)
 
