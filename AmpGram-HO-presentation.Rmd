@@ -321,7 +321,7 @@ Dataset consisted of 247 AMPs and 247 non-AMPs
 - Web server: [biongram.biotech.uni.wroc.pl/AmpGram](biongram.biotech.uni.wroc.pl/AmpGram)
 - R package: https://CRAN.R-project.org/package=AmpGram
 
-## Usage - prediction
+## Usage
 
 ```{r warning = FALSE}
 library(AmpGram)
@@ -330,6 +330,12 @@ library(AmpGramModel)
 sequences <- read_fasta("../AmpGram/inst/AmpGram/prots.txt")
 sequences
 
+```
+
+
+## Usage - prediction
+
+```{r}
 preds <- predict(AmpGram_model, sequences)
 preds
 
