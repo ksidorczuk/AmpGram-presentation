@@ -1,7 +1,7 @@
 ---
 title: "prediction of antimicrobial peptides"
 author: "Katarzyna Sidorczuk"
-date: "15/10/2020"
+date: "22/10/2020"
 output: 
   revealjs::revealjs_presentation:
     transition: none
@@ -20,6 +20,7 @@ library(dplyr)
 library(drake)
 library(ranger)
 library(biogram)
+library(AmpGramModel)
 source("../AmpGram-analysis/functions/raw_data.R")
 source("../AmpGram-analysis/functions/cdhit_data.R")
 source("../AmpGram-analysis/functions/nonstandard_AMPs.R")
@@ -31,7 +32,8 @@ source("../AmpGram-analysis/functions/count_ampgrams.R")
 source("../AmpGram-analysis/functions/do_cv.R")
 source("../AmpGram-analysis/functions/train_model_peptides.R")
 loadd(c(mer_df, binary_ngrams), path = "../AmpGram-analysis/.drake")
-load("../AmpGram-analysis/results/AmpGram_model.rda")
+#load("../AmpGram-analysis/results/AmpGram_model.rda")
+data("AmpGram_model")
 ```
 
 ## Amino acids and peptides
@@ -321,7 +323,7 @@ Dataset consisted of 247 AMPs and 247 non-AMPs
 
 ## Usage - prediction
 
-```{r}
+```{r message = FALSE}
 library(AmpGram)
 library(AmpGramModel)
 
